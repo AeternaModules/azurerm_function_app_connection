@@ -1,3 +1,7 @@
+output "function_app_connections_id" {
+  description = "Map of id values across all function_app_connections, keyed the same as var.function_app_connections"
+  value       = { for k, v in azurerm_function_app_connection.function_app_connections : k => v.id }
+}
 output "function_app_connections_authentication" {
   description = "Map of authentication values across all function_app_connections, keyed the same as var.function_app_connections"
   value       = { for k, v in azurerm_function_app_connection.function_app_connections : k => v.authentication }
