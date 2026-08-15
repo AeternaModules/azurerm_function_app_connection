@@ -4,7 +4,7 @@ output "function_app_connections_id" {
 }
 output "function_app_connections_authentication" {
   description = "Map of authentication values across all function_app_connections, keyed the same as var.function_app_connections"
-  value       = { for k, v in azurerm_function_app_connection.function_app_connections : k => v.authentication if v.authentication != null && length(v.authentication) > 0 }
+  value       = { for k, v in azurerm_function_app_connection.function_app_connections : k => one(v.authentication) if v.authentication != null && length(v.authentication) > 0 }
   sensitive   = true
 }
 output "function_app_connections_client_type" {
@@ -21,7 +21,7 @@ output "function_app_connections_name" {
 }
 output "function_app_connections_secret_store" {
   description = "Map of secret_store values across all function_app_connections, keyed the same as var.function_app_connections"
-  value       = { for k, v in azurerm_function_app_connection.function_app_connections : k => v.secret_store if v.secret_store != null && length(v.secret_store) > 0 }
+  value       = { for k, v in azurerm_function_app_connection.function_app_connections : k => one(v.secret_store) if v.secret_store != null && length(v.secret_store) > 0 }
 }
 output "function_app_connections_target_resource_id" {
   description = "Map of target_resource_id values across all function_app_connections, keyed the same as var.function_app_connections"
